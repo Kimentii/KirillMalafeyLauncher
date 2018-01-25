@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'key'
             keyPassword '123456789'
-            storeFile file('E:/Projects/AndroidStudio/ForYandex/Launcher/keystores/keystore.jks')
+            storeFile project.file('/../keystores/keystore.jks')
             storePassword '123456789'
         }
     }
