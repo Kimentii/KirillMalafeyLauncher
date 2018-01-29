@@ -23,9 +23,6 @@ jobs:
       - run:
           name: Run Tests
           command: ./gradlew lint test
-      - run:
-          name: Run Unit Tests
-          command: ./gradlew test
       - store_artifacts:
           path: app/build/reports
           destination: reports
@@ -44,8 +41,21 @@ jobs:
               bash ./scripts/deploy-hockey.sh
               bash ./scripts/deploy-fabric.sh
             fi
+  unit_tests:
+    docker:
+      - image: circleci/android:api-25-alpha
+    steps:
+      - checkout
+      - run:
+          name: chmod permissions
+          command: chmod +x ./gradlew
+      - run:
+          command: ./gradlew test
 workflows:
   version: 2
   sequential-workflow:
     jobs:
       - build
+      - unit_tests:
+          requires:
+            - build
