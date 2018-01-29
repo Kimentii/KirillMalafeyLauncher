@@ -33,6 +33,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.config
+        manifestPlaceholders = [HOCKEYAPP_APP_ID: "efdcc07e2d934999bd22fbc932837a58"]
     }
     buildTypes {
         release {
@@ -58,5 +59,6 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.8.0@aar') {
         transitive = true;
     }
+    compile 'net.hockeyapp.android:HockeySDK:5.1.0'
     implementation 'com.android.support:cardview-v7:26.1.0'
 }
