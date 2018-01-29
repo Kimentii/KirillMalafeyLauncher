@@ -44,3 +44,8 @@ jobs:
               bash ./scripts/deploy-hockey.sh
               bash ./scripts/deploy-fabric.sh
             fi
+workflows:
+  version: 2
+  sequential-workflow:
+    jobs:
+      - build
