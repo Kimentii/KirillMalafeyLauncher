@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">KirillMalafeyLauncher</string>
+    <string name="app_name">Malafey</string>
     <string name="name_and_surname">Kirill Malafey</string>
     <string name="github_account_name">GitHub account name: Kimentii</string>
     <string name="my_photo">Kirill\'s photo</string>
+    <string name="hello_title">Welcome</string>
+    <string name="next_button_text">Далее</string>
 </resources>
