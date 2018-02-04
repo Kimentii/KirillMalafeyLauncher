@@ -28,6 +28,8 @@
 
         <activity android:name=".welcome_page.HelloActivity">
         </activity>
+        <activity android:name=".welcome_page.DescriptionActivity">
+        </activity>
     </application>
 
 </manifest>
