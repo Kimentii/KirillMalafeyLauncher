@@ -32,6 +32,8 @@
         </activity>
         <activity android:name=".welcome_page.ThemeChoosingActivity">
         </activity>
+        <activity android:name=".welcome_page.WelcomePageActivity">
+        </activity>
     </application>
 
 </manifest>

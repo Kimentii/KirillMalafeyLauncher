@@ -14,7 +14,7 @@ import net.hockeyapp.android.CrashManager;
 import net.hockeyapp.android.UpdateManager;
 
 import io.fabric.sdk.android.Fabric;
-import kirill.malafey.launcher.welcome_page.HelloActivity;
+import kirill.malafey.launcher.welcome_page.WelcomePageActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onLongPress(MotionEvent motionEvent) {
-            final Intent nextActivityIntent = HelloActivity.newIntent(getApplicationContext());
+            final Intent nextActivityIntent = WelcomePageActivity.newIntent(getApplicationContext());
             startActivity(nextActivityIntent);
         }
 
