@@ -9,32 +9,30 @@ import android.widget.Button;
 
 import kirill.malafey.launcher.R;
 
-public class HelloActivity extends AppCompatActivity {
+public class ThemeChoosingActivity extends AppCompatActivity {
 
     private Button nextButton;
 
     public static Intent newIntent(Context packageContext) {
-        Intent intent = new Intent(packageContext, HelloActivity.class);
+        Intent intent = new Intent(packageContext, ThemeChoosingActivity.class);
         return intent;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hello);
-        nextButton = (Button) findViewById(R.id.activity_hello_next_button);
-        final Listener listener = new Listener();
-        nextButton.setOnClickListener(listener);
+        setContentView(R.layout.activity_theme_choosing);
+        nextButton = (Button) findViewById(R.id.activity_theme_choosing_next_button);
+
     }
 
     class Listener implements View.OnClickListener {
 
         @Override
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.activity_hello_next_button:
-                    final Intent nextActivityIntent = DescriptionActivity.newIntent(getApplicationContext());
-                    startActivity(nextActivityIntent);
+            switch (view.getId()){
+                case R.id.activity_description_next_button:
+
                     break;
             }
         }
