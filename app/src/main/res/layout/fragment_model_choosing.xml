@@ -9,22 +9,23 @@
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="25"
-        android:orientation="horizontal">
+        android:layout_weight="25">
 
         <RadioButton
             style="@style/RadioButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="hello"/>
+            android:text="first"/>
 
         <RadioButton
+            android:id="@+id/right_radio_button"
             style="@style/RadioButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"/>
+            android:text="second"/>
+
     </RadioGroup>
 
     <FrameLayout
@@ -34,10 +35,9 @@
 
         <Button
             android:id="@+id/activity_theme_choosing_next_button"
-            style="Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|end"
+            android:layout_gravity="center"
             android:text="@string/next_button_text">
         </Button>
     </FrameLayout>

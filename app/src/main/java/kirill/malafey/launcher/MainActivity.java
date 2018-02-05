@@ -28,47 +28,15 @@ public class MainActivity extends AppCompatActivity {
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
         authorPhotoImageView = (ImageView) findViewById(R.id.image_view_author_photo);
-        final GestureDetector gestureDetector = new GestureDetector(this, new GestureListener());
-        authorPhotoImageView.setOnTouchListener(new View.OnTouchListener() {
+        authorPhotoImageView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                return gestureDetector.onTouchEvent(motionEvent);
+            public boolean onLongClick(View view) {
+                final Intent nextActivityIntent = WelcomePageActivity.newIntent(getApplicationContext());
+                startActivity(nextActivityIntent);
+                return false;
             }
         });
         checkForUpdates();
-    }
-
-    class GestureListener implements GestureDetector.OnGestureListener {
-        @Override
-        public boolean onDown(MotionEvent motionEvent) {
-            return false;
-        }
-
-        @Override
-        public void onShowPress(MotionEvent motionEvent) {
-
-        }
-
-        @Override
-        public boolean onSingleTapUp(MotionEvent motionEvent) {
-            return false;
-        }
-
-        @Override
-        public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-            return false;
-        }
-
-        @Override
-        public void onLongPress(MotionEvent motionEvent) {
-            final Intent nextActivityIntent = WelcomePageActivity.newIntent(getApplicationContext());
-            startActivity(nextActivityIntent);
-        }
-
-        @Override
-        public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-            return false;
-        }
     }
 
     @Override

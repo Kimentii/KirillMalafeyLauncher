@@ -5,7 +5,9 @@
     <string name="my_photo">Kirill\'s photo</string>
     <string name="hello_title">Welcome</string>
     <string name="next_button_text">Далее</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="radio_button_text"><![CDATA[
+    <h1> Hello </h1>\n
+    This text is ander hello.
+    ]]></string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

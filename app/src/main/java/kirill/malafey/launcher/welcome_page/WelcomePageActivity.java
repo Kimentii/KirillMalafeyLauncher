@@ -37,6 +37,8 @@ public class WelcomePageActivity extends AppCompatActivity {
                         return DescriptionFragment.newInstance();
                     case 2:
                         return ThemeChoosingFragment.newInstance();
+                    case 3:
+                        return ModelChoosingFragment.newInstance();
                 }
                 return HelloFragment.newInstance();
             }
