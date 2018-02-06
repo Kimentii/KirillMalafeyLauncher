@@ -89,6 +89,7 @@ public class LauncherActivity extends AppCompatActivity {
                         App app = new App();
                         app.setAppName(info.loadLabel(packageManager).toString());
                         app.setPackageName(info.packageName);
+                        app.setAppIcon(info.loadIcon(packageManager));
                         AppStore.getInstance().addApp(app);
                     }
                 } catch (Exception e) {

@@ -1,5 +1,6 @@
 package kirill.malafey.launcher;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +32,7 @@ public class ListLauncherFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_list_launcher, container, false);
         List<App> list = AppStore.getInstance().getApps();
         Log.d(TAG, "apps list size(ListLauncherFragment): " + list.size());
-        recyclerView = (RecyclerView) view.findViewById(R.id.app_recycler_view);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         updateUI();
         return view;
@@ -52,12 +54,14 @@ public class ListLauncherFragment extends Fragment {
         private App app;
         private TextView appNameTextView;
         private TextView appPackageTextView;
+        private ImageView appIconImageView;
 
         public void bindApp(App app, int position) {
             this.app = app;
             Log.d(TAG, "showing list.");
             appNameTextView.setText(app.getAppName());
             appPackageTextView.setText(app.getPackageName());
+            appIconImageView.setImageDrawable(app.getAppIcon());
         }
 
 
@@ -66,12 +70,13 @@ public class ListLauncherFragment extends Fragment {
             itemView.setOnClickListener(this);
             appNameTextView = itemView.findViewById(R.id.tv_app_name);
             appPackageTextView = itemView.findViewById(R.id.tv_app_package);
+            appIconImageView = itemView.findViewById(R.id.iv_app_icon);
         }
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(view.getContext(), app.getAppName(), Toast.LENGTH_SHORT).show();
-            // I will start application here
+            Intent intent = getActivity().getPackageManager().getLaunchIntentForPackage(app.getPackageName());
+            startActivity(intent);
         }
     }
 

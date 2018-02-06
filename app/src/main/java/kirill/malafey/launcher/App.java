@@ -1,8 +1,11 @@
 package kirill.malafey.launcher;
 
+import android.graphics.drawable.Drawable;
+
 public class App {
     private String appName;
     private String packageName;
+    private Drawable appIcon;
 
     public String getAppName() {
         return appName;
@@ -18,5 +21,13 @@ public class App {
 
     public void setPackageName(String packageName) {
         this.packageName = packageName;
+    }
+
+    public Drawable getAppIcon() {
+        return appIcon;
+    }
+
+    public void setAppIcon(Drawable appIcon) {
+        this.appIcon = appIcon;
     }
 }
