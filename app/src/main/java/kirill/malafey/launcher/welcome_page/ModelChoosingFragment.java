@@ -2,16 +2,20 @@ package kirill.malafey.launcher.welcome_page;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Html;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.RadioButton;
 
 import kirill.malafey.launcher.R;
 
 public class ModelChoosingFragment extends Fragment {
-    private RadioButton rightRadioButton;
+    private RadioButton standardModelRadioButton;
+    private RadioButton fullModelRadioButton;
+    private FrameLayout standardModelRbWrapperFl;
+    private FrameLayout fullModelRbWrapperFl;
 
     public static ModelChoosingFragment newInstance() {
         ModelChoosingFragment fragment = new ModelChoosingFragment();
@@ -19,8 +23,27 @@ public class ModelChoosingFragment extends Fragment {
     }
 
     private void initViews(View v) {
-        rightRadioButton = v.findViewById(R.id.right_radio_button);
-        rightRadioButton.setText(Html.fromHtml(getString(R.string.radio_button_text)));
+        standardModelRadioButton = v.findViewById(R.id.radio_button_standard_model);
+        fullModelRadioButton = v.findViewById(R.id.radio_button_full_model);
+        final RadioButtonListener radioButtonListener = new RadioButtonListener();
+        standardModelRadioButton.setOnClickListener(radioButtonListener);
+        fullModelRadioButton.setOnClickListener(radioButtonListener);
+        standardModelRbWrapperFl = v.findViewById(R.id.fl_standard_model_rd_wrapper);
+        fullModelRbWrapperFl = v.findViewById(R.id.fl_full_model_rd_wrapper);
+        standardModelRbWrapperFl.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return standardModelRadioButton.onTouchEvent(motionEvent);
+            }
+        });
+        fullModelRbWrapperFl.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return fullModelRadioButton.onTouchEvent(motionEvent);
+            }
+        });
+
     }
 
     public View onCreateView(final LayoutInflater inflater,
@@ -29,5 +52,22 @@ public class ModelChoosingFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_model_choosing, container, false);
         initViews(v);
         return v;
+    }
+
+    class RadioButtonListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.radio_button_full_model:
+                    fullModelRadioButton.setChecked(true);
+                    standardModelRadioButton.setChecked(false);
+                    break;
+                case R.id.radio_button_standard_model:
+                    fullModelRadioButton.setChecked(false);
+                    standardModelRadioButton.setChecked(true);
+                    break;
+            }
+        }
     }
 }

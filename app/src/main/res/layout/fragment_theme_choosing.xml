@@ -5,38 +5,44 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="25">
-
-        <RadioButton
-            style="@style/RadioButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="hello"/>
-
-        <RadioButton
-            style="@style/RadioButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"/>
-    </RadioGroup>
-
     <FrameLayout
+        android:id="@+id/fl_light_theme_rb_wrapper"
+        style="@style/RadioButtonWrapperStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/activity_theme_choosing_next_button"
+        <RadioButton
+            android:id="@+id/radio_button_light_theme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/next_button_text">
-        </Button>
+            android:text="Title"/>
+
     </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_dark_theme_rb_wrapper"
+        style="@style/RadioButtonWrapperStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+
+        <RadioButton
+            android:id="@+id/radio_button_dark_theme"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="Title"/>
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/activity_hello_next_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/next_button_text"/>
 </LinearLayout>

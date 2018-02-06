@@ -61,4 +61,5 @@ dependencies {
     }
     compile 'net.hockeyapp.android:HockeySDK:5.1.0'
     implementation 'com.android.support:cardview-v7:26.1.0'
+    implementation 'com.android.support:design:27.0.2'
 }

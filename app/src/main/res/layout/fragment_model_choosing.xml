@@ -5,40 +5,64 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="25">
-
-        <RadioButton
-            style="@style/RadioButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="first"/>
-
-        <RadioButton
-            android:id="@+id/right_radio_button"
-            style="@style/RadioButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="second"/>
-
-    </RadioGroup>
-
     <FrameLayout
+        android:id="@+id/fl_standard_model_rd_wrapper"
+        style="@style/RadioButtonWrapperStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/activity_theme_choosing_next_button"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/next_button_text">
-        </Button>
+            android:layout_gravity="center|left"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radio_button_standard_model"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="text about live"/>
+        </LinearLayout>
     </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_full_model_rd_wrapper"
+        style="@style/RadioButtonWrapperStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radio_button_full_model"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Title"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="some text"/>
+        </LinearLayout>
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/activity_hello_next_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/next_button_text"
+        android:layout_gravity="center"/>
 </LinearLayout>
