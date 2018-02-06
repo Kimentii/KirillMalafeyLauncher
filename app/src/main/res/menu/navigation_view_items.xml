@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:title="Import" />
+            android:id="@+id/nv_item_grid"
+            android:title="Grid version" />
         <item
-            android:id="@+id/nav_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nv_item_list"
+            android:title="List version" />
         <item
             android:id="@+id/nav_slideshow"
             android:title="Slideshow" />

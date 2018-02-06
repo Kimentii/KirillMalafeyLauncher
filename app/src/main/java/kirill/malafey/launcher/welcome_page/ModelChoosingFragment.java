@@ -1,14 +1,17 @@
 package kirill.malafey.launcher.welcome_page;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 
+import kirill.malafey.launcher.LauncherActivity;
 import kirill.malafey.launcher.R;
 
 public class ModelChoosingFragment extends Fragment {
@@ -16,6 +19,7 @@ public class ModelChoosingFragment extends Fragment {
     private RadioButton fullModelRadioButton;
     private FrameLayout standardModelRbWrapperFl;
     private FrameLayout fullModelRbWrapperFl;
+    private Button nextButton;
 
     public static ModelChoosingFragment newInstance() {
         ModelChoosingFragment fragment = new ModelChoosingFragment();
@@ -44,6 +48,15 @@ public class ModelChoosingFragment extends Fragment {
             }
         });
 
+        nextButton = v.findViewById(R.id.button_next_model_choosing_fragment);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                final Intent nextActivity = LauncherActivity.newIntent(getContext());
+                startActivity(nextActivity);
+            }
+        });
     }
 
     public View onCreateView(final LayoutInflater inflater,

@@ -60,7 +60,7 @@
     </FrameLayout>
 
     <Button
-        android:id="@+id/activity_hello_next_button"
+        android:id="@+id/button_next_model_choosing_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/next_button_text"
