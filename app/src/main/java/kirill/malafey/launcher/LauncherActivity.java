@@ -1,7 +1,11 @@
 package kirill.malafey.launcher;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -10,9 +14,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import java.util.List;
+
 public class LauncherActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private PackageManager packageManager;
 
     public static Intent newIntent(Context packageContext) {
         Intent intent = new Intent(packageContext, LauncherActivity.class);
@@ -23,12 +30,11 @@ public class LauncherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
-
         drawerLayout = findViewById(R.id.drawer_layout);
-
         navigationView = findViewById(R.id.navigation_view);
-
+        packageManager = getPackageManager();
         setupDrawerContent(navigationView);
+        (new AppLoader()).execute();
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
@@ -68,5 +74,40 @@ public class LauncherActivity extends AppCompatActivity {
         menuItem.setChecked(true);
         setTitle(menuItem.getTitle());
         drawerLayout.closeDrawers();
+    }
+
+    private class AppLoader extends AsyncTask<Void, Void, Void> {
+
+        private ProgressDialog progressDialog = null;
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            List<ApplicationInfo> appsInfo = packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
+            for (ApplicationInfo info : appsInfo) {
+                try {
+                    if (packageManager.getLaunchIntentForPackage(info.packageName) != null) {
+                        App app = new App();
+                        app.setAppName(info.loadLabel(packageManager).toString());
+                        app.setPackageName(info.packageName);
+                        AppStore.getInstance().addApp(app);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            progressDialog.dismiss();
+            super.onPostExecute(result);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog = ProgressDialog.show(LauncherActivity.this, null, "Loading apps info...");
+            super.onPreExecute();
+        }
     }
 }
