@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Малафей</string>
-    <string name="full_app_name">Launcher</string>
+    <string name="full_app_name">راجمة</string>
     <string name="app_description">تطبيق يجعل من الأسهل للعمل مع التطبيقات الأخرى.</string>
     <string name="name_and_surname">Кирилл Малафей</string>
-    <string name="github_account_name">GitHub никнейм: Kimentii</string>
+    <string name="github_account_name">جيثب اللقب: كيمنتي</string>
     <string name="my_photo">الصور - سيريل</string>
     <string name="hello_title">مرحبا</string>
     <string name="next_button_text">في المرة القادمة</string>

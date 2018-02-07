@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Малафей</string>
-    <string name="full_app_name">Launcher</string>
+    <string name="full_app_name">Лаунчер</string>
     <string name="app_description">Приложение, которое позволяет более удобно работать с другими приложениями.</string>
     <string name="name_and_surname">Кирилл Малафей</string>
     <string name="github_account_name">GitHub никнейм: Kimentii</string>

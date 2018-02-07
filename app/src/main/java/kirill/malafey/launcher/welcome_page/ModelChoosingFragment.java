@@ -48,7 +48,7 @@ public class ModelChoosingFragment extends Fragment {
             }
         });
 
-        nextButton = v.findViewById(R.id.button_next_model_choosing_fragment);
+        nextButton = v.findViewById(R.id.button_next);
         nextButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
