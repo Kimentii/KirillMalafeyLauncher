@@ -3,8 +3,6 @@ package kirill.malafey.launcher;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -17,8 +15,6 @@ import io.fabric.sdk.android.Fabric;
 import kirill.malafey.launcher.welcome_page.WelcomePageActivity;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static final long PRESSING_TIME_MILLIS = 1500;
 
     private ImageView authorPhotoImageView;
 

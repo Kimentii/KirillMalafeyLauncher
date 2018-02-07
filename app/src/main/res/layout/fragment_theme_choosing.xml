@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Title"/>
+            android:text="@string/title_light_theme"/>
 
     </FrameLayout>
 
@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:text="Title"/>
+            android:text="@string/title_dark_theme"/>
     </FrameLayout>
 
     <Button

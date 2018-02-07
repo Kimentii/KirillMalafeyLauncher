@@ -34,6 +34,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.config
         manifestPlaceholders = [HOCKEYAPP_APP_ID: "efdcc07e2d934999bd22fbc932837a58"]
+        resConfigs "auto"
     }
     buildTypes {
         release {

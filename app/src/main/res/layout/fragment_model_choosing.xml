@@ -16,19 +16,19 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|left"
+            android:layout_gravity="center|start"
             android:orientation="vertical">
 
             <RadioButton
                 android:id="@+id/radio_button_standard_model"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Title"/>
+                android:text="@string/title_standard_model"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="text about live"/>
+                android:text="@string/text_standard_model"/>
         </LinearLayout>
     </FrameLayout>
 
@@ -43,19 +43,19 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|left"
+            android:layout_gravity="center|start"
             android:orientation="vertical">
 
             <RadioButton
                 android:id="@+id/radio_button_full_model"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Title"/>
+                android:text="@string/title_full_model"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="some text"/>
+                android:text="@string/text_full_model"/>
         </LinearLayout>
     </FrameLayout>
 

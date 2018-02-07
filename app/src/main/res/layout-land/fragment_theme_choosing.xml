@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Title"/>
+                android:text="@string/title_light_theme"/>
         </FrameLayout>
 
         <FrameLayout
@@ -38,8 +38,9 @@
             <RadioButton
                 android:id="@+id/radio_button_dark_theme"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Title"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/title_dark_theme"/>
         </FrameLayout>
     </LinearLayout>
 

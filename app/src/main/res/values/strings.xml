@@ -1,13 +1,21 @@
 <resources>
-    <string name="app_name">Malafey</string>
-    <string name="name_and_surname">Kirill Malafey</string>
-    <string name="github_account_name">GitHub account name: Kimentii</string>
-    <string name="my_photo">Kirill\'s photo</string>
-    <string name="hello_title">Welcome</string>
+    <string name="app_name">Малафей</string>
+    <string name="full_app_name">Launcher</string>
+    <string name="app_description">Приложение, которое позволяет более удобно работать с другими приложениями.</string>
+    <string name="name_and_surname">Кирилл Малафей</string>
+    <string name="github_account_name">GitHub никнейм: Kimentii</string>
+    <string name="my_photo">Фото Кирилла</string>
+    <string name="hello_title">Здравстуйте</string>
     <string name="next_button_text">Далее</string>
-    <string name="radio_button_text"><![CDATA[
-    <h1> Hello </h1>\n
-    This text is ander hello.
-    ]]></string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_standard_model">Стандартная модель</string>
+    <string name="text_standard_model">Портативная: 4 иконки в ряд\nЛандшафтная: 6 иконок в ряд</string>
+    <string name="title_full_model">Полный макет</string>
+    <string name="text_full_model">Портативная: 5 иконки в ряд\nЛандшафтная: 7 иконок в ряд</string>
+    <string name="title_dark_theme">Тёмная тема</string>
+    <string name="title_light_theme">Светлая тема</string>
+    <string name="title_grid_layout">Сетка</string>
+    <string name="title_list_layout">Список</string>
+    <string name="title_profile">Профиль</string>
+    <string name="title_settings">Настройки</string>
 </resources>

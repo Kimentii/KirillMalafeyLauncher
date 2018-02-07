@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Malafey</string>
+    <string name="full_app_name">Launcher</string>
+    <string name="app_description">An application that makes easier to work with other applications.</string>
+    <string name="name_and_surname">Kirill Malafey</string>
+    <string name="github_account_name">GitHub account name: Kimentii</string>
+    <string name="my_photo">Kirill\'s photo</string>
+    <string name="hello_title">Welcome</string>
+    <string name="next_button_text">Next</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_standard_model">Standard model</string>
+    <string name="text_standard_model">Portable: 4 icons in row\nLandscape: 6 icons in row</string>
+    <string name="title_full_model">Full model</string>
+    <string name="text_full_model">Portable: 5 icons in row\nLandscape: 7 icons in row</string>
+    <string name="title_dark_theme">Dark theme</string>
+    <string name="title_light_theme">Light theme</string>
+    <string name="title_grid_layout">Grid</string>
+    <string name="title_list_layout">List</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_settings">Settings</string>
+</resources>
