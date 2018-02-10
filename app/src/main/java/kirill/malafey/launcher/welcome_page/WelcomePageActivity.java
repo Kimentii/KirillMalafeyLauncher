@@ -3,6 +3,7 @@ package kirill.malafey.launcher.welcome_page;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -15,6 +16,7 @@ public class WelcomePageActivity extends AppCompatActivity {
     private static final int NUMBER_OF_FRAGMENTS = 4;
 
     private ViewPager viewPager;
+    private TabLayout tabLayout;
 
     public static Intent newIntent(Context packageContext) {
         Intent intent = new Intent(packageContext, WelcomePageActivity.class);
@@ -48,5 +50,8 @@ public class WelcomePageActivity extends AppCompatActivity {
                 return NUMBER_OF_FRAGMENTS;
             }
         });
+
+        tabLayout = findViewById(R.id.tabDots);
+        tabLayout.setupWithViewPager(viewPager, true);
     }
 }
