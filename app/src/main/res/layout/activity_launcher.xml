@@ -6,7 +6,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="kirill.malafey.launcher.LauncherActivity">
+    tools:context="kirill.malafey.launcher.launcher.LauncherActivity">
 
     <FrameLayout
         android:id="@+id/fl_launcher_activity"

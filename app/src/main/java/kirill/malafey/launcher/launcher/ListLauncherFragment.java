@@ -1,4 +1,4 @@
-package kirill.malafey.launcher;
+package kirill.malafey.launcher.launcher;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
+
+import kirill.malafey.launcher.App;
+import kirill.malafey.launcher.AppStore;
+import kirill.malafey.launcher.R;
 
 public class ListLauncherFragment extends Fragment {
     private String TAG = "TAG";

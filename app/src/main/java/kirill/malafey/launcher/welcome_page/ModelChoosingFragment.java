@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 
-import kirill.malafey.launcher.LauncherActivity;
+import kirill.malafey.launcher.launcher.LauncherActivity;
 import kirill.malafey.launcher.R;
 
 public class ModelChoosingFragment extends Fragment {

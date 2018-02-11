@@ -1,4 +1,4 @@
-package kirill.malafey.launcher;
+package kirill.malafey.launcher.launcher;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -15,6 +15,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import java.util.List;
+
+import kirill.malafey.launcher.App;
+import kirill.malafey.launcher.AppStore;
+import kirill.malafey.launcher.R;
 
 public class LauncherActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
@@ -57,6 +61,9 @@ public class LauncherActivity extends AppCompatActivity {
                 break;
             case R.id.nv_item_list:
                 fragmentClass = ListLauncherFragment.class;
+                break;
+            case R.id.nv_item_profile:
+                fragmentClass = ProfileFragment.class;
                 break;
             default:
                 fragmentClass = GridLauncherFragment.class;

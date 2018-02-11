@@ -28,7 +28,7 @@
 
         <activity android:name=".welcome_page.WelcomePageActivity">
         </activity>
-        <activity android:name=".LauncherActivity">
+        <activity android:name=".launcher.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.HOME"/>

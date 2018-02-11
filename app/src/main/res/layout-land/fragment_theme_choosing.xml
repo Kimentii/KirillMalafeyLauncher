@@ -45,13 +45,8 @@
     </LinearLayout>
 
 
-    <Button
-        android:id="@+id/activity_theme_choosing_next_button"
-        style="Widget.AppCompat.Button.Colored"
+    <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|end"
-        android:text="@string/next_button_text">
-    </Button>
-
+        android:layout_height="50dp">
+    </FrameLayout>
 </LinearLayout>

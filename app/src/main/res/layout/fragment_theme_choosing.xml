@@ -39,10 +39,7 @@
             android:text="@string/title_dark_theme"/>
     </FrameLayout>
 
-    <Button
-        android:id="@+id/button_next"
+    <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/next_button_text"/>
+        android:layout_height="50dp"/>
 </LinearLayout>
