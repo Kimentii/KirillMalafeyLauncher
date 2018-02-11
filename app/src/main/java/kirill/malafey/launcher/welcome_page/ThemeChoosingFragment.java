@@ -6,11 +6,10 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
+import io.fabric.sdk.android.services.settings.AppSettingsData;
 import kirill.malafey.launcher.R;
 
 public class ThemeChoosingFragment extends Fragment {
