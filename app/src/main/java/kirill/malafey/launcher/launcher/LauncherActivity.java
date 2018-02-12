@@ -19,6 +19,7 @@ import java.util.List;
 import kirill.malafey.launcher.App;
 import kirill.malafey.launcher.AppStore;
 import kirill.malafey.launcher.R;
+import kirill.malafey.launcher.Settings;
 
 public class LauncherActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
@@ -32,6 +33,7 @@ public class LauncherActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(Settings.getInstance(this).getCurrentThemeResource());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -117,5 +119,11 @@ public class LauncherActivity extends AppCompatActivity {
             progressDialog = ProgressDialog.show(LauncherActivity.this, null, "Loading apps info...");
             super.onPreExecute();
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Settings.getInstance(this).saveSettings();
     }
 }

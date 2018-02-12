@@ -1,6 +1,7 @@
 package kirill.malafey.launcher.launcher;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -17,6 +18,7 @@ import java.util.List;
 import kirill.malafey.launcher.App;
 import kirill.malafey.launcher.AppStore;
 import kirill.malafey.launcher.R;
+import kirill.malafey.launcher.Settings;
 
 public class GridLauncherFragment extends Fragment {
     private String TAG = "TAG";
@@ -36,7 +38,14 @@ public class GridLauncherFragment extends Fragment {
         List<App> list = AppStore.getInstance().getApps();
         Log.d(TAG, "apps list size(GridLauncherFragment): " + list.size());
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_grid);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 5));
+        if (getActivity().getResources().getConfiguration().orientation ==
+                Configuration.ORIENTATION_PORTRAIT) {
+            recyclerView.setLayoutManager(new GridLayoutManager(getContext(),
+                    Settings.getInstance(getContext()).getSpanCountPortrait()));
+        } else {
+            recyclerView.setLayoutManager(new GridLayoutManager(getContext(),
+                    Settings.getInstance(getContext()).getSpanCountLandscape()));
+        }
         updateUI();
         return view;
     }

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 
+import kirill.malafey.launcher.Settings;
 import kirill.malafey.launcher.launcher.LauncherActivity;
 import kirill.malafey.launcher.R;
 
@@ -75,10 +76,12 @@ public class ModelChoosingFragment extends Fragment {
                 case R.id.radio_button_full_model:
                     fullModelRadioButton.setChecked(true);
                     standardModelRadioButton.setChecked(false);
+                    Settings.getInstance(getContext()).setModel(Settings.MODEL_FULL);
                     break;
                 case R.id.radio_button_standard_model:
                     fullModelRadioButton.setChecked(false);
                     standardModelRadioButton.setChecked(true);
+                    Settings.getInstance(getContext()).setModel(Settings.MODEL_STANDARD);
                     break;
             }
         }

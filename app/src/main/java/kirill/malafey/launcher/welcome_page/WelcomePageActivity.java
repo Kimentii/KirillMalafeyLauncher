@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import kirill.malafey.launcher.R;
+import kirill.malafey.launcher.Settings;
 
 public class WelcomePageActivity extends AppCompatActivity {
     private static final int NUMBER_OF_FRAGMENTS = 4;
@@ -25,6 +26,7 @@ public class WelcomePageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(Settings.getInstance(this).getCurrentThemeResource());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -53,5 +55,11 @@ public class WelcomePageActivity extends AppCompatActivity {
 
         tabLayout = findViewById(R.id.tabDots);
         tabLayout.setupWithViewPager(viewPager, true);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Settings.getInstance(this).saveSettings();
     }
 }
