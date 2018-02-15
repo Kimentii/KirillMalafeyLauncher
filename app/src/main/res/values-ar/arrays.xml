@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="models">
+        <item>Полная модель</item>
+        <item>Стандартная модель</item>
+    </string-array>
+
+    <string-array name="themes">
+        <item>Темная тема</item>
+        <item>Светлая</item>
+    </string-array>
+</resources>

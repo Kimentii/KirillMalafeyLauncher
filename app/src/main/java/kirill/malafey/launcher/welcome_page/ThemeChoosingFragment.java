@@ -63,12 +63,15 @@ public class ThemeChoosingFragment extends Fragment {
                 case R.id.radio_button_light_theme:
                     lightThemeRadioButton.setChecked(true);
                     darkThemeRadioButton.setChecked(false);
-                    Settings.getInstance(getContext()).setAppTheme(Settings.THEME_LIGHT);
+                    Settings.getInstance(getContext()).setAppTheme(
+                            getResources().getStringArray(R.array.themes_values)[Settings.THEME_LIGHT_INDEX]
+                    );
                     break;
                 case R.id.radio_button_dark_theme:
                     lightThemeRadioButton.setChecked(false);
                     darkThemeRadioButton.setChecked(true);
-                    Settings.getInstance(getContext()).setAppTheme(Settings.THEME_DARK);
+                    Settings.getInstance(getContext()).setAppTheme(
+                            getResources().getStringArray(R.array.themes_values)[Settings.THEME_DARK_INDEX]);
                     break;
             }
         }

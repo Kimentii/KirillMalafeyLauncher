@@ -1,7 +1,5 @@
 package kirill.malafey.launcher.launcher;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,9 +10,9 @@ import kirill.malafey.launcher.R;
 
 public class ProfileFragment extends Fragment {
 
-    public static Intent newIntent(Context packageContext) {
-        Intent intent = new Intent(packageContext, ProfileFragment.class);
-        return intent;
+    public static ProfileFragment newInstance() {
+        ProfileFragment fragment = new ProfileFragment();
+        return fragment;
     }
 
     @Override

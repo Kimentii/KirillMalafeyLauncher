@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:defaultValue="1"
+        android:dialogTitle="Choose theme"
+        android:entries="@array/themes"
+        android:entryValues="@array/themes_values"
+        android:key="@string/app_preference_app_theme"
+        android:title="theme">
+    </ListPreference>
+    <ListPreference
+        android:defaultValue="1"
+        android:dialogTitle="Choose model"
+        android:entries="@array/models"
+        android:entryValues="@array/models_values"
+        android:key="@string/app_preference_model"
+        android:title="model">
+    </ListPreference>
+</PreferenceScreen>

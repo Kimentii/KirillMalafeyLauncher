@@ -22,6 +22,7 @@ import kirill.malafey.launcher.R;
 import kirill.malafey.launcher.Settings;
 
 public class LauncherActivity extends AppCompatActivity {
+    public static final String TAG = "TAG";
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private PackageManager packageManager;
@@ -67,6 +68,9 @@ public class LauncherActivity extends AppCompatActivity {
             case R.id.nv_item_profile:
                 fragmentClass = ProfileFragment.class;
                 break;
+            case R.id.nv_item_settings:
+                fragmentClass = SettingsFragment.class;
+                break;
             default:
                 fragmentClass = GridLauncherFragment.class;
         }
@@ -74,6 +78,7 @@ public class LauncherActivity extends AppCompatActivity {
         try {
             fragment = (Fragment) fragmentClass.newInstance();
         } catch (Exception e) {
+
             e.printStackTrace();
         }
 
