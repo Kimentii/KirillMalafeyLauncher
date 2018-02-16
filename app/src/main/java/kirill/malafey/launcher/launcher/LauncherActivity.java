@@ -34,6 +34,7 @@ public class LauncherActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Settings.getInstance(getApplicationContext()).setFirstStart(false);
         setTheme(Settings.getInstance(this).getCurrentThemeResource());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
@@ -129,6 +130,5 @@ public class LauncherActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Settings.getInstance(this).saveSettings();
     }
 }

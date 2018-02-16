@@ -10,8 +10,12 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.crashlytics.android.Crashlytics;
+
+import io.fabric.sdk.android.Fabric;
 import kirill.malafey.launcher.R;
 import kirill.malafey.launcher.Settings;
+import kirill.malafey.launcher.launcher.LauncherActivity;
 
 public class WelcomePageActivity extends AppCompatActivity {
     private static final int NUMBER_OF_FRAGMENTS = 4;
@@ -26,8 +30,14 @@ public class WelcomePageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (!Settings.getInstance(getApplicationContext()).isFirstStart()) {
+            Intent nextActivity = LauncherActivity.newIntent(getApplicationContext());
+            startActivity(nextActivity);
+            finish();
+        }
         setTheme(Settings.getInstance(this).getCurrentThemeResource());
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_welcome_page);
         FragmentManager fragmentManager = getSupportFragmentManager();
         viewPager = findViewById(R.id.welcome_page_view_pager);
@@ -60,6 +70,5 @@ public class WelcomePageActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Settings.getInstance(this).saveSettings();
     }
 }

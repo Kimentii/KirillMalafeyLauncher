@@ -76,14 +76,12 @@ public class ModelChoosingFragment extends Fragment {
                 case R.id.radio_button_full_model:
                     fullModelRadioButton.setChecked(true);
                     standardModelRadioButton.setChecked(false);
-                    Settings.getInstance(getContext()).setModel(
-                            getResources().getStringArray(R.array.models_values)[Settings.MODEL_FULL_INDEX]);
+                    Settings.getInstance(getContext()).setModel(Settings.MODEL_FULL);
                     break;
                 case R.id.radio_button_standard_model:
                     fullModelRadioButton.setChecked(false);
                     standardModelRadioButton.setChecked(true);
-                    Settings.getInstance(getContext()).setModel(
-                            getResources().getStringArray(R.array.models_values)[Settings.MODEL_STANDARD_INDEX]);
+                    Settings.getInstance(getContext()).setModel(Settings.MODEL_STANDARD);
                     break;
             }
         }
