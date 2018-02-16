@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import kirill.malafey.launcher.App;
 import kirill.malafey.launcher.AppStore;
@@ -22,8 +24,10 @@ public class ListLauncherFragment extends Fragment {
     private String TAG = "TAG";
     private AppAdapter appAdapter;
     private RecyclerView recyclerView;
+    private static Observable appsListReadyObservable;
 
-    public static ListLauncherFragment newInstance() {
+    public static ListLauncherFragment newInstance(Observable appsListReadyObservable) {
+        ListLauncherFragment.appsListReadyObservable = appsListReadyObservable;
         ListLauncherFragment fragment = new ListLauncherFragment();
         return fragment;
     }
@@ -47,6 +51,15 @@ public class ListLauncherFragment extends Fragment {
         if (appAdapter == null) {
             appAdapter = new AppAdapter(appsList);
             recyclerView.setAdapter(appAdapter);
+            appsListReadyObservable.addObserver(new Observer() {
+                @Override
+                public void update(Observable observable, Object o) {
+                    AppStore appStore = AppStore.getInstance();
+                    List<App> appsList = appStore.getApps();
+                    appAdapter.setApps(appsList);
+                    appAdapter.notifyDataSetChanged();
+                }
+            });
         } else {
             appAdapter.setApps(appsList);
             appAdapter.notifyDataSetChanged();

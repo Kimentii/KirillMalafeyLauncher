@@ -12,9 +12,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 
 import java.util.List;
+import java.util.Observable;
 
 import kirill.malafey.launcher.App;
 import kirill.malafey.launcher.AppStore;
@@ -26,6 +28,7 @@ public class LauncherActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private PackageManager packageManager;
+    private Observable appsListReadyObservable;
 
     public static Intent newIntent(Context packageContext) {
         Intent intent = new Intent(packageContext, LauncherActivity.class);
@@ -42,7 +45,18 @@ public class LauncherActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.navigation_view);
         packageManager = getPackageManager();
         setupDrawerContent(navigationView);
-        (new AppLoader()).execute();
+        // Without overriding notifyObserver method will not work.
+        appsListReadyObservable = new Observable() {
+            @Override
+            public void notifyObservers() {
+                super.setChanged();
+                super.notifyObservers();
+            }
+        };
+        (new AppLoader(appsListReadyObservable)).execute();
+        Fragment fragment = GridLauncherFragment.newInstance(appsListReadyObservable);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fl_launcher_activity, fragment).commit();
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
@@ -77,9 +91,15 @@ public class LauncherActivity extends AppCompatActivity {
         }
 
         try {
-            fragment = (Fragment) fragmentClass.newInstance();
-        } catch (Exception e) {
+            if (fragmentClass.equals(GridLauncherFragment.class)) {
+                fragment = GridLauncherFragment.newInstance(appsListReadyObservable);
+            } else if (fragmentClass.equals(ListLauncherFragment.class)) {
+                fragment = ListLauncherFragment.newInstance(appsListReadyObservable);
+            } else {
+                fragment = (Fragment) fragmentClass.newInstance();
+            }
 
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -94,6 +114,11 @@ public class LauncherActivity extends AppCompatActivity {
     private class AppLoader extends AsyncTask<Void, Void, Void> {
 
         private ProgressDialog progressDialog = null;
+        private Observable appsListReadyObservable;
+
+        AppLoader(Observable appsListReadyObservable) {
+            this.appsListReadyObservable = appsListReadyObservable;
+        }
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -111,11 +136,13 @@ public class LauncherActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
+            Log.d(TAG, "Notify observers");
             return null;
         }
 
         @Override
         protected void onPostExecute(Void result) {
+            appsListReadyObservable.notifyObservers();
             progressDialog.dismiss();
             super.onPostExecute(result);
         }

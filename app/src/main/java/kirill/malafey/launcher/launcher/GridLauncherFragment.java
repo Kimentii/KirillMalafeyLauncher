@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import kirill.malafey.launcher.App;
 import kirill.malafey.launcher.AppStore;
@@ -24,8 +26,10 @@ public class GridLauncherFragment extends Fragment {
     private String TAG = "TAG";
     private AppAdapter appAdapter;
     private RecyclerView recyclerView;
+    private static Observable appsListReadyObservable;
 
-    public static GridLauncherFragment newInstance() {
+    public static GridLauncherFragment newInstance(Observable appsListReadyObserver) {
+        GridLauncherFragment.appsListReadyObservable = appsListReadyObserver;
         GridLauncherFragment fragment = new GridLauncherFragment();
         return fragment;
     }
@@ -56,6 +60,19 @@ public class GridLauncherFragment extends Fragment {
         if (appAdapter == null) {
             appAdapter = new AppAdapter(appsList);
             recyclerView.setAdapter(appAdapter);
+            appsListReadyObservable.addObserver(new Observer() {
+                @Override
+                public void update(Observable observable, Object o) {
+                    System.out.println("FUCK");
+                    Log.d(TAG, "Observer work");
+                    AppStore appStore = AppStore.getInstance();
+                    List<App> appsList = appStore.getApps();
+                    appAdapter.setApps(appsList);
+                    appAdapter.notifyDataSetChanged();
+                }
+            });
+            Log.d("TAG","Set observer");
+
         } else {
             appAdapter.setApps(appsList);
             appAdapter.notifyDataSetChanged();
