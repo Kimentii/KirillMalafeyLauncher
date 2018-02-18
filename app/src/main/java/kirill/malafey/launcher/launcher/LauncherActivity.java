@@ -21,7 +21,7 @@ import java.util.Observable;
 import kirill.malafey.launcher.App;
 import kirill.malafey.launcher.AppStore;
 import kirill.malafey.launcher.R;
-import kirill.malafey.launcher.Settings;
+import kirill.malafey.launcher.AppSettings;
 
 public class LauncherActivity extends AppCompatActivity {
     public static final String TAG = "TAG";
@@ -37,8 +37,8 @@ public class LauncherActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Settings.getInstance(getApplicationContext()).setFirstStart(false);
-        setTheme(Settings.getInstance(this).getCurrentThemeResource());
+        AppSettings.getInstance(getApplicationContext()).setFirstStart(false);
+        setTheme(AppSettings.getInstance(this).getCurrentThemeResource());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
         drawerLayout = findViewById(R.id.drawer_layout);

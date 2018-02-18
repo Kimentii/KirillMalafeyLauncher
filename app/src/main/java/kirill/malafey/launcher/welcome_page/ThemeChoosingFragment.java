@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.RadioButton;
 
 import kirill.malafey.launcher.R;
-import kirill.malafey.launcher.Settings;
+import kirill.malafey.launcher.AppSettings;
 
 public class ThemeChoosingFragment extends Fragment {
 
@@ -63,12 +63,12 @@ public class ThemeChoosingFragment extends Fragment {
                 case R.id.radio_button_light_theme:
                     lightThemeRadioButton.setChecked(true);
                     darkThemeRadioButton.setChecked(false);
-                    Settings.getInstance(getContext()).setAppTheme(Settings.THEME_LIGHT);
+                    AppSettings.getInstance(getContext()).setAppTheme(AppSettings.THEME_LIGHT);
                     break;
                 case R.id.radio_button_dark_theme:
                     lightThemeRadioButton.setChecked(false);
                     darkThemeRadioButton.setChecked(true);
-                    Settings.getInstance(getContext()).setAppTheme(Settings.THEME_DARK);
+                    AppSettings.getInstance(getContext()).setAppTheme(AppSettings.THEME_DARK);
                     break;
             }
         }

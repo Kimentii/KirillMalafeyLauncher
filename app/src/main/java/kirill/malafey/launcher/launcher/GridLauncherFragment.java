@@ -2,12 +2,17 @@ package kirill.malafey.launcher.launcher;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -18,9 +23,9 @@ import java.util.Observable;
 import java.util.Observer;
 
 import kirill.malafey.launcher.App;
+import kirill.malafey.launcher.AppSettings;
 import kirill.malafey.launcher.AppStore;
 import kirill.malafey.launcher.R;
-import kirill.malafey.launcher.Settings;
 
 public class GridLauncherFragment extends Fragment {
     private String TAG = "TAG";
@@ -45,12 +50,13 @@ public class GridLauncherFragment extends Fragment {
         if (getActivity().getResources().getConfiguration().orientation ==
                 Configuration.ORIENTATION_PORTRAIT) {
             recyclerView.setLayoutManager(new GridLayoutManager(getContext(),
-                    Settings.getInstance(getContext()).getSpanCountPortrait()));
+                    AppSettings.getInstance(getContext()).getSpanCountPortrait()));
         } else {
             recyclerView.setLayoutManager(new GridLayoutManager(getContext(),
-                    Settings.getInstance(getContext()).getSpanCountLandscape()));
+                    AppSettings.getInstance(getContext()).getSpanCountLandscape()));
         }
         updateUI();
+
         return view;
     }
 
@@ -71,7 +77,7 @@ public class GridLauncherFragment extends Fragment {
                     appAdapter.notifyDataSetChanged();
                 }
             });
-            Log.d("TAG","Set observer");
+            Log.d("TAG", "Set observer");
 
         } else {
             appAdapter.setApps(appsList);
@@ -79,7 +85,8 @@ public class GridLauncherFragment extends Fragment {
         }
     }
 
-    private class AppHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+    private class AppHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         private App app;
         private TextView appNameTextView;
         private ImageView appIconImageView;
@@ -94,6 +101,7 @@ public class GridLauncherFragment extends Fragment {
         public AppHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
             appNameTextView = itemView.findViewById(R.id.tv_app_name);
             appIconImageView = itemView.findViewById(R.id.iv_app_icon);
         }
@@ -102,6 +110,12 @@ public class GridLauncherFragment extends Fragment {
         public void onClick(View view) {
             Intent intent = getActivity().getPackageManager().getLaunchIntentForPackage(app.getPackageName());
             startActivity(intent);
+        }
+
+        @Override
+        public boolean onLongClick(View view) {
+            showPopup(view, app);
+            return false;
         }
     }
 
@@ -133,6 +147,44 @@ public class GridLauncherFragment extends Fragment {
         @Override
         public int getItemCount() {
             return appsList.size();
+        }
+    }
+
+    public void showPopup(View v, App app) {
+        PopupMenu popup = new PopupMenu(getContext(), v);
+        popup.setOnMenuItemClickListener(new PopupMenuItemListener(app));
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.popup_menu_items, popup.getMenu());
+        popup.show();
+    }
+
+    private class PopupMenuItemListener implements PopupMenu.OnMenuItemClickListener {
+        private static final String PACKAGE_PREFIX_URI = "package:";
+        private App app;
+
+        PopupMenuItemListener(App app) {
+            this.app = app;
+        }
+
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            Intent intent;
+            switch (item.getItemId()) {
+                case R.id.menu_delete:
+                    intent = new Intent(Intent.ACTION_DELETE);
+                    intent.setData(Uri.parse(PACKAGE_PREFIX_URI + app.getPackageName()));
+                    startActivity(intent);
+                    break;
+                case R.id.menu_frequency:
+
+                    break;
+                case R.id.menu_info:
+                    intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    intent.setData(Uri.parse(PACKAGE_PREFIX_URI + app.getPackageName()));
+                    startActivity(intent);
+                    break;
+            }
+            return false;
         }
     }
 }

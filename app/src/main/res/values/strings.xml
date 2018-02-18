@@ -19,6 +19,11 @@
     <string name="title_profile">Профиль</string>
     <string name="title_settings">Настройки</string>
 
+    <!-- for popup menu -->
+    <string name="title_delete_item">Удалить</string>
+    <string name="title_frequency_item">Частота</string>
+    <string name="title_info_item">Информация</string>
+
     <!-- for preferences -->
     <string name="app_preference_app_theme" translatable="false">app_theme</string>
     <string name="app_preference_model" translatable="false">model</string>

@@ -14,7 +14,7 @@ import com.crashlytics.android.Crashlytics;
 
 import io.fabric.sdk.android.Fabric;
 import kirill.malafey.launcher.R;
-import kirill.malafey.launcher.Settings;
+import kirill.malafey.launcher.AppSettings;
 import kirill.malafey.launcher.launcher.LauncherActivity;
 
 public class WelcomePageActivity extends AppCompatActivity {
@@ -30,12 +30,12 @@ public class WelcomePageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (!Settings.getInstance(getApplicationContext()).isFirstStart()) {
+        if (!AppSettings.getInstance(getApplicationContext()).isFirstStart()) {
             Intent nextActivity = LauncherActivity.newIntent(getApplicationContext());
             startActivity(nextActivity);
             finish();
         }
-        setTheme(Settings.getInstance(this).getCurrentThemeResource());
+        setTheme(AppSettings.getInstance(this).getCurrentThemeResource());
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_welcome_page);

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_delete"
+        android:title="@string/title_delete_item">
+    </item>
+    <item
+        android:id="@+id/menu_frequency"
+        android:title="@string/title_frequency_item">
+    </item>
+    <item
+        android:id="@+id/menu_info"
+        android:orderInCategory="3"
+        android:title="@string/title_info_item">
+    </item>
+</menu>

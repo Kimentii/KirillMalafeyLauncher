@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-public class Settings {
+public class AppSettings {
     public static final String APP_PREFERENCE_APP_THEME = "app_theme";
     public static final String APP_PREFERENCE_MODEL = "model";
     public static final String APP_PREFERENCE_IS_FIRST_START = "is_first_start";
@@ -22,19 +22,19 @@ public class Settings {
 
     private String appTheme;
     private String model;
-    private static Settings settings;
+    private static AppSettings appSettings;
     private SharedPreferences sharedPreferences;
 
 
-    private Settings(Context context) {
+    private AppSettings(Context context) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-    public static Settings getInstance(Context context) {
-        if (settings == null) {
-            settings = new Settings(context);
+    public static AppSettings getInstance(Context context) {
+        if (appSettings == null) {
+            appSettings = new AppSettings(context);
         }
-        return settings;
+        return appSettings;
     }
 
     public int getCurrentThemeResource() {

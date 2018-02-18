@@ -18,4 +18,9 @@
     <string name="title_list_layout">قائمة</string>
     <string name="title_profile">الملف الشخصي</string>
     <string name="title_settings">إعدادات</string>
+
+    <!-- for popup menu -->
+    <string name="title_frequency_item">تكرر</string>
+    <string name="title_delete_item">حذف</string>
+    <string name="title_info_item">معلومات</string>
 </resources>
