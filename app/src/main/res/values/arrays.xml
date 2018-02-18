@@ -5,9 +5,16 @@
         <item>Стандартная модель</item>
     </string-array>
 
-    <string-array name="themes" >
+    <string-array name="themes">
         <item>Темная тема</item>
         <item>Светлая</item>
+    </string-array>
+
+    <string-array name="sorts" translatable="false">
+        <item>По дате установки</item>
+        <item>От А до Я</item>
+        <item>От Я до А</item>
+        <item>По частоте использования</item>
     </string-array>
 
     <string-array name="models_values" translatable="false">
@@ -18,5 +25,12 @@
     <string-array name="themes_values" translatable="false">
         <item>dark_theme</item>
         <item>light_theme</item>
+    </string-array>
+
+    <string-array name="sorts_values" translatable="false">
+        <item>sort_by_data</item>
+        <item>sort_by_alphabet</item>
+        <item>sort_by_inverse_alphabet</item>
+        <item>sort_by_use_frequency</item>
     </string-array>
 </resources>

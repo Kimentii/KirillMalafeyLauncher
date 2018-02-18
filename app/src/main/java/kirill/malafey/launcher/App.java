@@ -6,6 +6,7 @@ public class App {
     private String appName;
     private String packageName;
     private Drawable appIcon;
+    private long installationDateMS;
 
     public String getAppName() {
         return appName;
@@ -29,5 +30,13 @@ public class App {
 
     public void setAppIcon(Drawable appIcon) {
         this.appIcon = appIcon;
+    }
+
+    public long getInstallationDateMS() {
+        return installationDateMS;
+    }
+
+    public void setInstallationDateMS(long installationDateMS) {
+        this.installationDateMS = installationDateMS;
     }
 }

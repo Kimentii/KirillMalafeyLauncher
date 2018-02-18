@@ -1,12 +1,18 @@
 package kirill.malafey.launcher.launcher;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
+import android.support.v7.util.SortedList;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -17,6 +23,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import kirill.malafey.launcher.App;
+import kirill.malafey.launcher.AppSettings;
 import kirill.malafey.launcher.AppStore;
 import kirill.malafey.launcher.R;
 
@@ -66,7 +73,7 @@ public class ListLauncherFragment extends Fragment {
         }
     }
 
-    private class AppHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    private class AppHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         private App app;
         private TextView appNameTextView;
         private TextView appPackageTextView;
@@ -74,7 +81,7 @@ public class ListLauncherFragment extends Fragment {
 
         public void bindApp(App app, int position) {
             this.app = app;
-            Log.d(TAG, "showing list.");
+            // Log.d(TAG, "showing list.");
             appNameTextView.setText(app.getAppName());
             appPackageTextView.setText(app.getPackageName());
             appIconImageView.setImageDrawable(app.getAppIcon());
@@ -84,6 +91,7 @@ public class ListLauncherFragment extends Fragment {
         public AppHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
             appNameTextView = itemView.findViewById(R.id.tv_app_name);
             appPackageTextView = itemView.findViewById(R.id.tv_app_package);
             appIconImageView = itemView.findViewById(R.id.iv_app_icon);
@@ -94,13 +102,24 @@ public class ListLauncherFragment extends Fragment {
             Intent intent = getActivity().getPackageManager().getLaunchIntentForPackage(app.getPackageName());
             startActivity(intent);
         }
+
+        @Override
+        public boolean onLongClick(View view) {
+            showPopup(view, app);
+            return false;
+        }
     }
 
     private class AppAdapter extends RecyclerView.Adapter<AppHolder> {
-        private List<App> appsList;
+        private SortedList<App> appsSortedList;
 
         public AppAdapter(List<App> appsList) {
-            this.appsList = appsList;
+            Log.d(TAG, "setting new appsSort");
+            this.appsSortedList = new SortedList<App>(App.class, AppSettings.getInstance(getContext())
+                    .getSortedListAdapterCallback(this));
+            appsSortedList.beginBatchedUpdates();
+            appsSortedList.addAll(appsList);
+            appsSortedList.endBatchedUpdates();
         }
 
         @Override
@@ -113,17 +132,58 @@ public class ListLauncherFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(AppHolder holder, int position) {
-            App app = appsList.get(position);
+            App app = appsSortedList.get(position);
             holder.bindApp(app, position);
         }
 
         public void setApps(List<App> appsList) {
-            this.appsList = appsList;
+            appsSortedList.beginBatchedUpdates();
+            appsSortedList.clear();
+            appsSortedList.addAll(appsList);
+            appsSortedList.endBatchedUpdates();
         }
 
         @Override
         public int getItemCount() {
-            return appsList.size();
+            return appsSortedList.size();
+        }
+    }
+
+    public void showPopup(View v, App app) {
+        PopupMenu popup = new PopupMenu(getContext(), v);
+        popup.setOnMenuItemClickListener(new PopupMenuItemListener(app));
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.popup_menu_items, popup.getMenu());
+        popup.show();
+    }
+
+    private class PopupMenuItemListener implements PopupMenu.OnMenuItemClickListener {
+        private static final String PACKAGE_PREFIX_URI = "package:";
+        private App app;
+
+        PopupMenuItemListener(App app) {
+            this.app = app;
+        }
+
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            Intent intent;
+            switch (item.getItemId()) {
+                case R.id.menu_delete:
+                    intent = new Intent(Intent.ACTION_DELETE);
+                    intent.setData(Uri.parse(PACKAGE_PREFIX_URI + app.getPackageName()));
+                    startActivity(intent);
+                    break;
+                case R.id.menu_frequency:
+
+                    break;
+                case R.id.menu_info:
+                    intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    intent.setData(Uri.parse(PACKAGE_PREFIX_URI + app.getPackageName()));
+                    startActivity(intent);
+                    break;
+            }
+            return false;
         }
     }
 }

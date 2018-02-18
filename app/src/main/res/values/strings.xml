@@ -27,4 +27,5 @@
     <!-- for preferences -->
     <string name="app_preference_app_theme" translatable="false">app_theme</string>
     <string name="app_preference_model" translatable="false">model</string>
+    <string name="app_preference_sort" translatable="false">sort</string>
 </resources>

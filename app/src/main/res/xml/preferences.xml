@@ -16,4 +16,12 @@
         android:key="@string/app_preference_model"
         android:title="model">
     </ListPreference>
+    <ListPreference
+        android:defaultValue="1"
+        android:dialogTitle="Choose list sorting"
+        android:entries="@array/sorts"
+        android:entryValues="@array/sorts_values"
+        android:key="@string/app_preference_sort"
+        android:title="list sort">
+    </ListPreference>
 </PreferenceScreen>

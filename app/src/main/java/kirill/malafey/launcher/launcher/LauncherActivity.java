@@ -19,9 +19,9 @@ import java.util.List;
 import java.util.Observable;
 
 import kirill.malafey.launcher.App;
+import kirill.malafey.launcher.AppSettings;
 import kirill.malafey.launcher.AppStore;
 import kirill.malafey.launcher.R;
-import kirill.malafey.launcher.AppSettings;
 
 public class LauncherActivity extends AppCompatActivity {
     public static final String TAG = "TAG";
@@ -130,6 +130,8 @@ public class LauncherActivity extends AppCompatActivity {
                         app.setAppName(info.loadLabel(packageManager).toString());
                         app.setPackageName(info.packageName);
                         app.setAppIcon(info.loadIcon(packageManager));
+                        app.setInstallationDateMS(getApplicationContext().getPackageManager()
+                                .getPackageInfo(info.packageName, 0).firstInstallTime);
                         AppStore.getInstance().addApp(app);
                     }
                 } catch (Exception e) {
